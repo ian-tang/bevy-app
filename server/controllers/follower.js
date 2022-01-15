@@ -63,7 +63,7 @@ exports.getFollows = async (req, res) => {
       ],
     });
 
-    res.status(200).send(follows);
+    res.status(200).send(follows.map((follow) => follow.follows));
   } catch (e) {
     console.error(e);
     res.status(500).send("internal server error");
@@ -85,7 +85,7 @@ exports.getFollowers = async (req, res) => {
       ],
     });
 
-    res.status(200).send(followers);
+    res.status(200).send(followers.map((follower) => follower.followers));
   } catch (e) {
     console.error(e);
     res.status(500).send("internal server error");

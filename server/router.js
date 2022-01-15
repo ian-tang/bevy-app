@@ -10,7 +10,7 @@ router.get("/profile/:id/follows", followerController.getFollows);
 
 router.get("/profile/:id/followers", followerController.getFollowers);
 
-router.get("/events/:eventId/participants", eventController.getParticipants);
+router.get("/events/:eventId", eventController.getDetails);
 
 router.post("/register", userController.register);
 

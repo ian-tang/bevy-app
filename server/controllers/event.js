@@ -44,9 +44,9 @@ exports.removeParticipant = async (req, res) => {
   }
 };
 
-exports.getParticipants = async (req, res) => {
+exports.getDetails = async (req, res) => {
   try {
-    const participants = await db.Event.findAll({
+    const event = await db.Event.findOne({
       where: {
         id: req.params.eventId,
       },
@@ -58,11 +58,13 @@ exports.getParticipants = async (req, res) => {
               eventId: req.params.eventId,
             },
           },
+          attributes: ["id", "firstName", "lastName"],
+          as: "participants",
         },
       ],
     });
 
-    res.status(200).send(participants);
+    res.status(200).send(event);
   } catch (e) {
     console.error(e);
     res.status(500).send("internal server error");

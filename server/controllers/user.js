@@ -24,7 +24,7 @@ exports.getProfile = async (req, res) => {
       include: [
         {
           model: db.Event,
-          as: "owner",
+          as: "eventsOwned",
         },
         {
           model: db.Event,
@@ -33,6 +33,7 @@ exports.getProfile = async (req, res) => {
               userId: req.params.id,
             },
           },
+          as: "eventsJoined",
         },
       ],
     });
