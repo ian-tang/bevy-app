@@ -1,0 +1,28 @@
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+
+  padding: 5%;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.events-container {
+  grid-column: span 6;
+}
+
+.form-container {
+  grid-column: span 3;
+}
+
+.follows-container {
+  grid-column-start: 10;
+  grid-column: span 3;
+}
+
+.followers-container {
+  grid-row-start: 2;
+  grid-column: 10 / span 3;
+}
