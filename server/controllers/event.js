@@ -3,7 +3,7 @@ const db = require("../models/");
 exports.create = async (req, res) => {
   try {
     const event = req.body;
-    if (event.time && event.location) {
+    if (event.date && event.location) {
       await db.Event.create({
         ...event,
         ownerId: req.params.userId,
@@ -65,6 +65,17 @@ exports.getDetails = async (req, res) => {
     });
 
     res.status(200).send(event);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("internal server error");
+  }
+};
+
+exports.getAll = async (req, res) => {
+  try {
+    const events = await db.Event.findAll({});
+
+    res.status(200).send(events);
   } catch (e) {
     console.error(e);
     res.status(500).send("internal server error");

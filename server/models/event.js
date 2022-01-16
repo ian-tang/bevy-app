@@ -1,6 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define("Event", {
-    time: {
+    title: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
