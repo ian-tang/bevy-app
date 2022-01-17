@@ -4,13 +4,25 @@
 
   padding: 5%;
 
+  background-color: #f7f7fa;
+
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.container {
+  padding: 0.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+
+  background-color: white;
 }
 
 .events-container {
   grid-column: span 6;
+  grid-row: span 2;
 }
 
 .form-container {
@@ -20,9 +32,13 @@
 .follows-container {
   grid-column-start: 10;
   grid-column: span 3;
+
+  padding: 0.5rem;
 }
 
 .followers-container {
   grid-row-start: 2;
   grid-column: 10 / span 3;
+
+  padding: 0.5rem;
 }

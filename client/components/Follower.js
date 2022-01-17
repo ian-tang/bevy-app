@@ -8,7 +8,7 @@ export default function Follower(props) {
 
   return (
     <div>
-      <h6>{props.follower.firstName + " " + props.follower.lastName}</h6>
+      <h5>{props.follower.firstName + " " + props.follower.lastName}</h5>
       <p>{location}</p>
     </div>
   );

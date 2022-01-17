@@ -1,13 +1,12 @@
 import Event from "./Event";
+import styles from "../styles/ActivityFeed.module.css";
 
 export default function ActivityFeed(props) {
   return (
-    <div className="event-feed">
-      <ul>
-        {props.events.map((event) => (
-          <Event key={event.id} event={event} />
-        ))}
-      </ul>
+    <div className={styles["activity-feed"]}>
+      {props.events.map((event) => (
+        <Event key={event.id} event={event} />
+      ))}
     </div>
   );
 }

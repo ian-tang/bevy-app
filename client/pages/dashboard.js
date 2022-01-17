@@ -7,7 +7,7 @@ import ActivityFeed from "../components/ActivityFeed";
 import CreateEventForm from "../components/CreateEventForm";
 import FollowerList from "../components/FollowerList";
 
-import styles from "../styles/Dashboard.module.css";
+import styles from "../styles/dashboard.module.css";
 
 export default function Dashboard() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,16 +45,16 @@ export default function Dashboard() {
   if (isLoaded) {
     return (
       <div className={styles.dashboard}>
-        <div className={styles["form-container"]}>
+        <div className={`${styles.container} ${styles["form-container"]}`}>
           <CreateEventForm handleSubmit={handleSubmit} />
         </div>
-        <div className={styles["events-container"]}>
+        <div className={`${styles["events-container"]}`}>
           <ActivityFeed events={events} />
         </div>
-        <div className={styles["follows-container"]}>
+        <div className={`${styles.container} ${styles["follows-container"]}`}>
           <FollowerList key="follows" followers={follows} />
         </div>
-        <div className={styles["followers-container"]}>
+        <div className={`${styles.container} ${styles["followers-container"]}`}>
           <FollowerList key="followers" followers={followers} />
         </div>
       </div>
