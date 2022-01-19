@@ -3,24 +3,27 @@ import Link from "next/link";
 
 import api from "../lib/apiClient";
 
-import ActivityFeed from "../components/ActivityFeed";
+import EventList from "../components/EventList";
 import CreateEventForm from "../components/CreateEventForm";
-import FollowerList from "../components/FollowerList";
+import UserList from "../components/UserList";
 
-import styles from "../styles/dashboard.module.css";
+import styles from "../styles/Dashboard.module.css";
 
 export default function Dashboard() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
   const [follows, setFollows] = useState([]);
   const [followers, setFollowers] = useState([]);
 
   useEffect(() => {
     (async () => {
+      const { user, follows, followers } = await api.getCurrentUser();
       setEvents(await api.getAllEvents());
-      setFollows(await api.getFollows());
-      setFollowers(await api.getFollowers());
+      setUser(user);
+      setFollows(follows);
+      setFollowers(followers);
       setIsLoaded(true);
     })();
   }, []);
@@ -38,7 +41,7 @@ export default function Dashboard() {
 
     e.target.reset();
 
-    await api.postNewEvent(newEvent);
+    await api.postNewEvent(newEvent, 1);
     setEvents(await api.getAllEvents());
   }
 
@@ -48,14 +51,24 @@ export default function Dashboard() {
         <div className={`${styles.container} ${styles["form-container"]}`}>
           <CreateEventForm handleSubmit={handleSubmit} />
         </div>
-        <div className={`${styles["events-container"]}`}>
-          <ActivityFeed events={events} />
+        <div
+          style={{ position: "relative" }}
+          className={`${styles["events-container"]}`}
+        >
+          <h3 style={{ position: "absolute", top: "-2.5rem" }}>
+            Upcoming activities you can join
+          </h3>
+          <EventList events={events} />
         </div>
-        <div className={`${styles.container} ${styles["follows-container"]}`}>
-          <FollowerList key="follows" followers={follows} />
+        <div className={`${styles["follows-container"]}`}>
+          <h3>Following</h3>
+          <br />
+          <UserList key="follows" users={follows} />
         </div>
-        <div className={`${styles.container} ${styles["followers-container"]}`}>
-          <FollowerList key="followers" followers={followers} />
+        <div className={`${styles["followers-container"]}`}>
+          <h3>Followers</h3>
+          <br />
+          <UserList key="followers" users={followers} />
         </div>
       </div>
     );

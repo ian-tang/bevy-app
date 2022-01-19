@@ -1,12 +1,12 @@
 import moment from "moment";
 
-import styles from "../styles/CreateEventForm.module.css";
+import styles from "../styles/Form.module.css";
 
 export default function CreateEventForm(props) {
   const today = moment().format("YYYY-MM-DDTHH:mm");
 
   return (
-    <form className={styles["create-event"]} onSubmit={props.handleSubmit}>
+    <form className={styles["form"]} onSubmit={props.handleSubmit}>
       <h3>Plan a new activity</h3>
 
       <div className={styles["form-input"]}>

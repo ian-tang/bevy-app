@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     if (event.date && event.location) {
       await db.Event.create({
         ...event,
-        ownerId: req.params.userId,
+        ownerId: req.user.id,
       });
       res.status(201).send("event created");
     } else {

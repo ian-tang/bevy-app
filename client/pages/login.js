@@ -7,13 +7,9 @@ import styles from "../styles/Form.module.css";
 const initialState = {
   email: "",
   password: "",
-  firstName: "",
-  lastName: "",
-  city: "",
-  state: "",
 };
 
-function Register(props) {
+export default function Login(props) {
   const [state, setState] = useState(initialState);
 
   const router = useRouter();
@@ -27,15 +23,13 @@ function Register(props) {
   };
 
   const validateForm = () => {
-    return (
-      !state.email || !state.password || !state.firstName || !state.lastName
-    );
+    return !state.email || !state.password;
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
     const user = state;
-    const res = await api.register(user);
+    const res = await api.login(user);
 
     if (res.error) {
       alert(`${res.message}`);
@@ -49,11 +43,11 @@ function Register(props) {
 
   return (
     <form
-      style={{ "max-width": "40rem", height: "35rem" }}
+      style={{ maxWidth: "40rem", height: "20rem" }}
       className={styles["form"]}
       onSubmit={handleSubmit}
     >
-      <h3>Create an account</h3>
+      <h3>Log In</h3>
 
       <div className={styles["form-input"]}>
         <label htmlFor="email">email:</label>
@@ -75,45 +69,13 @@ function Register(props) {
         ></input>
       </div>
 
-      <div className={styles["form-input"]}>
-        <label htmlFor="firstName">first name:</label>
-        <input
-          name="firstName"
-          type="text"
-          required
-          onChange={handleChange}
-        ></input>
-      </div>
-
-      <div className={styles["form-input"]}>
-        <label htmlFor="lastName">last name:</label>
-        <input
-          name="lastName"
-          type="text"
-          required
-          onChange={handleChange}
-        ></input>
-      </div>
-
-      <div className={styles["form-input"]}>
-        <label htmlFor="city">city (optional):</label>
-        <input name="city" type="text" onChange={handleChange}></input>
-      </div>
-
-      <div className={styles["form-input"]}>
-        <label htmlFor="state">state (optional):</label>
-        <input name="state" type="text" onChange={handleChange}></input>
-      </div>
-
       <button
         id={styles["submit-form"]}
         type="submit"
         disabled={validateForm()}
       >
-        Register
+        Log In
       </button>
     </form>
   );
 }
-
-export default Register;

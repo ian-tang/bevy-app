@@ -50,9 +50,10 @@ exports.unfollowUser = async (req, res) => {
 
 exports.getFollows = async (req, res) => {
   try {
+    const id = req.params.id ? req.params.id : req.user.id;
     const follows = await db.Follower.findAll({
       where: {
-        followerId: req.params.id,
+        followerId: id,
       },
       include: [
         {
@@ -72,9 +73,10 @@ exports.getFollows = async (req, res) => {
 
 exports.getFollowers = async (req, res) => {
   try {
+    const id = req.params.id ? req.params.id : req.user.id;
     const followers = await db.Follower.findAll({
       where: {
-        userId: req.params.id,
+        userId: id,
       },
       include: [
         {
